@@ -7,3 +7,11 @@ def logs_form(edited_logs)
       "#{date} FROM: #{ip} TO: #{message}"
     end 
   end
+
+  File.new('edited_logs.txt', 'w')
+
+  if File.exist? 'edited_logs.txt'
+    File.open('edited_logs.txt', 'w') do |file|
+      logs_form(logs).each { |lines| file.puts(lines) }
+    end
+  end
