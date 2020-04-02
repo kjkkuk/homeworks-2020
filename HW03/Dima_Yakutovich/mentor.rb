@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Mentor
+  attr_reader :notifications
+
   def initialize(name:, surname:)
     @name = name
     @surname = surname
@@ -12,7 +14,7 @@ class Mentor
     notification(lections).add_new_lection
   end
 
-  def read_lections
+  def read_lections(lections)
     student << lections
   end
 
@@ -28,29 +30,11 @@ class Mentor
 
   def answer_questions(question, answer)
     answer.question = question
+    notification.answers
   end
 
-  def add_questions(questions, answer)
-    questions.answer = answer
+  def accept!(homework)
+    homework.status = 'done'
+    notification(homework).complete_homework
   end
-
-  def set_tasks; end
-
-  def check_tasks; end
-
-  def subscribe_to(student)
-    student.mentors << self
-  end
-
-  def show_notifications
-    notifications.empty? ? (puts 'No notifications') : (puts notifications)
-  end
-
-  def read_notifications!
-    @notifications.clear
-  end
-
-  private
-
-  attr_reader :notifications
 end
