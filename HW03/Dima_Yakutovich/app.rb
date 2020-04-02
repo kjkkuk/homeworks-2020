@@ -31,6 +31,7 @@ module App
     # notify if errors
     # mentor merge task
     # notify student about checked
+    #
     #########################################
 
     # set lections
@@ -38,7 +39,7 @@ module App
     # notify about lections
     student.notifications ####
     # read lections
-    student.read_leactions(lections) ####
+    mentor.read_lections(lections) ####
     # mentor create hw
     homework = mentor.add_tasks(description: 'HW03 by ', student: student) ####
     # notify about create
@@ -48,68 +49,23 @@ module App
     # student ask q
     student.ask_questions(question, 'any questions') ####
     # notify mentor about q
-    mentor.notification
+    mentor.notification ####
     # mentor ans q
     mentor.answer_questions(question, 'any answers') ####
     # notify student about ans
-    student.notifications
-    # student complete task
+    student.notifications ####
     # student send task
-    # notify mentor
+    student.to_check(homework) ####
     # mentor check tasks
-    student.to_check(homework)
     # notify if errors
-    mentor.reject!(homework)
+    # mentor.notifications
+    # mentor.reject!(homework)
     # mentor merge task
-    mentor.accept!(homework)
+    mentor.accept!(homework) ####
     # notify student about checked
     student.notifications
 
     ########################################################
-    student.submit_homework!(homework_data)
-    student.homeworks # => [Homework, ...]
-
-    mentor.subscribe_to(student)
-    mentor.notifications # => []
-
-    student.submit_homework!(homework_data)
-    mentor.notifications # => [Notification, ...]
-
-    mentor.read_notifications!
-    mentor.notifications # => []
-
-    # student see notification about new homework
-    student.notifications
-    # student mark as read all notifications
-    student.mark_as_read!
-    # mentor subscribe to student
-    mentor.subscribe_to!(student)
-    # student take to work homework
-    student.to_work!(homework)
-    # mentor see notification about homework to work
-    mentor.notifications
-    # mentor mark as read all notifications
-    mentor.mark_as_read!
-    # student can see homeworks
-    student.homeworks
-    # student add answer to homework
-    student.add_answer!(homework, 'new students answer')
-    # student sent to check homework
-    student.to_check!(homework)
-    # mentor see notification about homework to check
-    mentor.notifications
-    # mentor reject homework
-    mentor.reject!(homework)
-    # student see notification about homework was reject
-    student.notifications
-    # ---
-    student.add_answer!(homework, 'new students answer_after reject')
-    student.to_check!(homework)
-    # -----------------------
-    # mentor accept homework
-    mentor.accept!(homework)
-    # student see notification about homework was accept
-    student.notifications
   end
 end
 
