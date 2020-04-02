@@ -14,16 +14,11 @@ class Student
   def sumbit_homework!(number, description, link)
     homework = Homework.new(number, description, link)
     @homeworks << homework
-    #    notify_homeworks(homework)
-  end
-
-  def read_notifications!
-    @notifications.clear
   end
 
   def ask_questions(question, ask)
     question.ask = ask
-    notifications.questions
+    notification.questions
   end
 
   def do_tasks(homework)
@@ -33,9 +28,17 @@ class Student
   end
 
   def send_homework(task)
-    add_homework(task)
     homework = Homework.new(task[:title], task[:description], task[:student])
     notification(homework).add_new_homework
     homework
-    end
+  end
+
+  def to_check!(homework)
+    homework.status = 'to_check'
+    notification(homework).homework_to_check
+  end
+
+  def notification(homework)
+    Notification.new(homework)
+  end
 end
