@@ -13,3 +13,14 @@ class Array
     else to_enum
     end
   end
+  
+  def my_map
+    output = []
+
+    if block_given?
+
+      my_each { |i| output << yield(i) }
+    else to_enum
+    end
+    output
+  end
