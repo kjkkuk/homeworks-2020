@@ -24,3 +24,16 @@ class Array
     end
     output
   end
+  def my_select
+    if block_given?
+
+      output = []
+
+      my_each do |i|
+        output << i if yield(i)
+      end
+      output
+    else to_enum
+    end
+  end
+end
