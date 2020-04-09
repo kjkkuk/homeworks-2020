@@ -24,3 +24,17 @@ RSpec.describe Array do
     end
   end
 end
+
+RSpec.describe Array do
+  subject { Array.new([1, 2, 3, 4, 5, 256]) }
+  describe '#my_each' do
+    context 'when def each' do
+      it 'should return column of output' do
+        expectation = expect do
+          (subject.my_each { |i| puts i * 2 })
+        end
+        expectation.to output("2\n4\n6\n8\n10\n512").to_stdout
+      end
+    end
+  end
+end
