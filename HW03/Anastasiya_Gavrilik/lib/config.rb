@@ -1,0 +1,5 @@
+require_relative 'app/homework'
+require_relative 'app/human'
+require_relative 'app/mentor'
+require_relative 'app/student'
+require_relative 'app/run'
