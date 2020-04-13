@@ -12,3 +12,4 @@ Metrics/BlockLength:
   Exclude:
     - db/schema.rb
   Max: 30
+require: rubocop-rspec
